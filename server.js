@@ -1,4 +1,5 @@
 const express = require("express");
+const inquirer = require("inquirer");
 const db = require("./db/connnection");
 const apiRoutes = require("./routes/apiRoutes");
 require("dotenv").config();
