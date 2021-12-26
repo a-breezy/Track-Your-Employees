@@ -1,8 +1,8 @@
 const express = require("express");
-const inquirer = require("inquirer");
-const db = require("./db/connnection");
-const apiRoutes = require("./routes/apiRoutes");
 require("dotenv").config();
+const inquirer = require("inquirer");
+const db = require("./db/connection");
+const apiRoutes = require("./routes/apiRoutes");
 
 const PORT = process.env.PORT || 5001;
 const app = express();
@@ -10,6 +10,9 @@ const app = express();
 // express middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+// use apiRoutes
+app.use("/api", apiRoutes);
 
 // default response for any request -- Not Found
 app.use((req, res) => {
