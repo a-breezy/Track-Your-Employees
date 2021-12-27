@@ -18,7 +18,7 @@ router.get("/depts", (req, res) => {
 	});
 });
 
-// endpoint to add data for all departments
+// endpoint to add data to departments
 router.post("/depts", ({ body }, res) => {
 	const errors = inputCheck(body, "name");
 	if (errors) {
