@@ -18,6 +18,23 @@ router.get("/employees", (req, res) => {
 	});
 });
 
+// route to show data for single employee
+router.get("/employee/:id", (req, res) => {
+	const sql = `SELECT * FROM employee WHERE id = ?`;
+	const params = [req.params.id];
+
+	db.query(sql, params, (err, row) => {
+		if (err) {
+			res.status(400).json({ error: err.message });
+			return;
+		}
+		res.json({
+			message: "success",
+			data: row,
+		});
+	});
+});
+
 // endpoint to add data for all employees
 router.post("/employees", ({ body }, res) => {
 	const errors = inputCheck(
@@ -50,6 +67,35 @@ router.post("/employees", ({ body }, res) => {
 			message: "success",
 			data: body,
 		});
+	});
+});
+
+// update employee data role
+router.put("/employee/:id", (req, res) => {
+	const errors = inputCheck(req.body, "role_id");
+	if (errors) {
+		res.status(400).json({ error: errors });
+		return;
+	}
+
+	const sql = `UPDATE employee SET role_id = ? WHERE id = ?`;
+	const params = [req.body.role_id, req.params.id];
+
+	db.query(sql, params, (err, result) => {
+		if (err) {
+			res.status(400).json({ error: err.message });
+			return;
+		} else if (!result.affectedRows) {
+			res.json({
+				message: "Employee not found",
+			});
+		} else {
+			res.json({
+				message: "success",
+				data: req.body,
+				changes: result.affectedRows,
+			});
+		}
 	});
 });
 
