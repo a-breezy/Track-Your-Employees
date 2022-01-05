@@ -4,12 +4,12 @@ VALUES
     ('engineering'),
     ('book-keeping');
 
-INSERT INTO role (title, salary)
+INSERT INTO role (title, salary, department_id)
 VALUES
-    ('manager', 50000),
-    ('engineer', 60000),
-    ('accountant', 40000),
-    ('intern', 25000);
+    ('manager', 50000, 1),
+    ('engineer', 60000, 2),
+    ('accountant', 40000, 3),
+    ('intern', 25000, NULL);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES
