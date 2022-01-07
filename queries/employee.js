@@ -32,6 +32,63 @@ const selectEmployee = (startQuestions, body) => {
 	});
 };
 
+// route to show data for employees by manager
+const selectEmployeeByManager = (startQuestions, body) => {
+	const errors = inputCheck(body, "manager_id");
+	if (errors) {
+		throw errors;
+	}
+
+	const sql = `SELECT * FROM employee WHERE manager_id = ?`;
+	const params = [body.manager_id];
+
+	db.query(sql, params, (err, rows) => {
+		if (err) {
+			throw err;
+		}
+		console.table(rows);
+		startQuestions();
+	});
+};
+
+// select employees by department
+const selectEmployeeDept = (startQuestions, body) => {
+	const errors = inputCheck(body, "department_id");
+	if (errors) {
+		throw errors;
+	}
+
+	const sql = `SELECT e.id, e.first_name AS 'First Name', e.last_name AS 'Last Name', d.name AS Department FROM employee e LEFT JOIN role r ON r.id = e.role_id LEFT JOIN department d ON d.id = r.department_id WHERE d.id = ?`;
+	const params = [body.department_id];
+
+	db.query(sql, params, (err, rows) => {
+		if (err) {
+			throw err;
+		}
+		console.table(rows);
+		startQuestions();
+	});
+};
+
+// route to update employee's manager
+const updateEmployeeManager = (startQuestions, body) => {
+	const errors = inputCheck(body, "manager_id");
+	if (errors) {
+		throw errors;
+	}
+
+	const sql = `UPDATE employee SET manager_id = ? WHERE id = ?`;
+	const params = [body.manager_id, body.id];
+
+	db.query(sql, params, (err, rows) => {
+		if (err) {
+			throw err;
+		}
+		console.table(rows);
+		startQuestions();
+	});
+};
+
 // endpoint to add data for all employees
 const addNewEmployee = (startQuestions, body) => {
 	const errors = inputCheck(
@@ -81,11 +138,6 @@ const updateEmployee = (startQuestions, body) => {
 		} else {
 			console.table(rows);
 			startQuestions();
-			// res.json({
-			// 	message: "success",
-			// 	data: req.body,
-			// 	changes: result.affectedRows,
-			// });
 		}
 	});
 };
@@ -95,4 +147,7 @@ module.exports = {
 	selectEmployee,
 	addNewEmployee,
 	updateEmployee,
+	selectEmployeeByManager,
+	updateEmployeeManager,
+	selectEmployeeDept,
 };
