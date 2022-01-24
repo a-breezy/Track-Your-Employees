@@ -1,13 +1,12 @@
-# Track-Your-Employees
-A database that allows the user to track employees 
+# Track-Your-Employees [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-# Expert Note Taker [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+As your company grows, it's often hard to recall your employees, their pay, department, managers and other important, individual information. But not with Track-Your-Employees!
   
 ## Description
 
-A server to run Expert Note Taker, an app that saves and deletes notes created by the user. Each new note is given a unique ID and saved to the db.json file which holds all notes. When app is started the server gets previously saved notes from the json and parses them to the app. The user can save new notes or delete unneeded notes, both of which will update db.json.
+This is a mysql and inquirer program to let users navigate their company's database, track employees, and departmentes. Users can view deptartments, roles, and employees as well as search by manager and department. Users can also add new departments, roles, and employees as well as update current employee's roles and managers.
 
-GitHub Repo: https://github.com/a-breezy/Expert-Note-Taker
+GitHub Repo: [Track-Your-Employees](https://github.com/a-breezy/Track-Your-Employees)
 
 ## Table of Contents
 
@@ -21,19 +20,22 @@ GitHub Repo: https://github.com/a-breezy/Expert-Note-Taker
 
 ## Installation Instructions
 
-Install all npm dependencies: type npm i.
+Install all npm dependencies: type 'npm i'
 
-Begin by starting nodemon, an extension to automatically restart server: Open terminal and type "npm run devStart". This will get the app running locally on port 3001, so on your browser type: "http://localhost:3001/".
-
-From here the app is running. CLick "Get Started" to go to the note taking page and add or delete any notes.
+Run the package through the command line by typing: 'npm start'
 
 ---
 ## Usage
 
-![Usage 1](./images/noteTakerIndex.png "Index Screen Shot")*Index of Note Taker*
+A Video of Track-Your-Employees can be found [here](https://drive.google.com/file/d/10aILiKAApKtuW4eS04hUTgKu8ruU4JTx/view)
 
-![Usage 2](./images/noteTakerNotes.png "Notes Screen Shot")*Add or delete notes*
+![Usage 1](./usage/images/start.png "Starting the App")*Starting the App*
 
+![Usage 2](./usage/images/depts.png "View All Departments")*View All Departments*
+
+![Usage 3](./usage/images/roles.png "View All Roles")*View All Roles*
+
+![Usage 4](./usage/images/employees.png "View All Employees")*View All Employees*
 
 ---
 ## License
@@ -54,7 +56,7 @@ None
 ---
 ## Tests
 
-After downloading dependencies create server and test locally on port 3001.
+None
 
 ---
 ## Questions
