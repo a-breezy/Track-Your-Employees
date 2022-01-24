@@ -3,7 +3,7 @@ const inputCheck = require("../utils/inputCheck");
 
 // show data for all employees
 const selectEmployees = (startQuestions) => {
-	const sql = `SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.name, CONCAT(e.first_name, ' ' ,e.last_name) AS Manager FROM employee INNER JOIN role on role.id = employee.role_id INNER JOIN department on department.id = role.department_id left join employee e on employee.manager_id = e.id;`;
+	const sql = `SELECT employee.id AS 'Employee ID', employee.first_name AS 'Employee First Name', employee.last_name AS 'Employee Last Name ', role.title AS 'Role', role.salary AS 'Salary', department.name AS 'Department', CONCAT(e.first_name, ' ' ,e.last_name) AS Manager FROM employee INNER JOIN role on role.id = employee.role_id INNER JOIN department on department.id = role.department_id left join employee e on employee.manager_id = e.id;`;
 	db.query(sql, (err, rows) => {
 		if (err) {
 			throw err;
@@ -128,7 +128,7 @@ const updateEmployee = (startQuestions, body) => {
 	}
 
 	const sql = `UPDATE employee SET role_id = ? WHERE id = ?`;
-	const params = [body.role_id, body.id];
+	const params = [body.role_id, body.employee_id];
 
 	db.query(sql, params, (err, rows) => {
 		if (err) {
